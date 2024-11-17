@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 interface GenerateReplyResponse {
@@ -51,7 +50,12 @@ async function generateReply(
 
     if (suggestionIndex !== -1) {
       const suggestionsText = content.substring(suggestionIndex + suggestionKeyword.length);
-      suggestions.push(...suggestionsText.split('\n').map(s => s.trim()).filter(s => s));
+      suggestions.push(
+        ...suggestionsText
+          .split('\n')
+          .map((s: string) => s.trim())
+          .filter((s: string) => s)
+      );
     }
 
     // If no suggestions found, return empty array
