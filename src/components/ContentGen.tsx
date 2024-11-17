@@ -26,7 +26,7 @@ const ContentGenerator: React.FC = () => {
   const [words, setWords] = useState<string>("Short");
   const [contentType, setContentType] = useState<string>("Professional");
   const [language, setLanguage] = useState<string>("English");
-
+  const[ btnClicked, setBtnClicked] = React.useState<boolean>(false)
   const mapWords = (wordChoice: string): number => {
     switch (wordChoice.toLowerCase()) {
       case "short":
@@ -46,13 +46,16 @@ const ContentGenerator: React.FC = () => {
     setContentResponse(null);
 
     try {
+      setBtnClicked(true)
       const wordsNumber = mapWords(words);
       const response = await generateReply(platform, wordsNumber, contentType, language, topic);
+      setBtnClicked(false)
       setContentResponse(response);
     } catch (err: any) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
     } finally {
       setLoading(false)
+
     }
   };
 
@@ -92,10 +95,16 @@ const ContentGenerator: React.FC = () => {
       )} */}
 
       {/* Platform-Specific UI */}
+      {
+        !contentResponse  && !loading ?''
+         :
       <div className="mt-8">
-        {/* Pass generated content and suggestions to UiDistributer */}
-        <UiDistributer platform={platform} content={contentResponse?.content} suggestions={contentResponse?.suggestions} />
-      </div>
+        
+      {/* Pass generated content and suggestions to UiDistributer */}
+      <UiDistributer platform={platform} content={contentResponse?.content} suggestions={contentResponse?.suggestions} />
+    </div>
+      }
+      
     </div>
   );
 };

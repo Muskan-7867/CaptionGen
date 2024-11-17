@@ -4,14 +4,12 @@ interface InstagramUIProps {
   postImage: string;
   content: string | undefined;
   suggestions: string[] | undefined;
-  
 }
 
 const InstagramUI: React.FC<InstagramUIProps> = ({
   postImage,
   content,
   suggestions,
- 
 }) => (
   <div className="rounded-md shadow-md sm:w-96 dark:bg-gray-50 dark:text-gray-800">
     <div className="flex items-center justify-between p-3">
@@ -21,11 +19,7 @@ const InstagramUI: React.FC<InstagramUIProps> = ({
           alt="User Profile"
           className="object-cover object-center w-8 h-8 rounded-full shadow-sm dark:bg-gray-500 dark:border-gray-300"
         />
-        <a
-          rel="noopener noreferrer"
-          href="#"
-          className="text-sm font-semibold"
-        >
+        <a rel="noopener noreferrer" href="#" className="text-sm font-semibold">
           Leroy Jenkins
         </a>
         <span className="text-xs dark:text-gray-600">4 hours ago</span>
@@ -103,15 +97,15 @@ const InstagramUI: React.FC<InstagramUIProps> = ({
       {/* Post Content */}
       <div className="space-y-3">
         <div>
-          <h3 className="text-sm font-semibold mb-2 dark:text-gray-800">
-            Captions:
-          </h3>
+          <h3 className="text-sm font-semibold mb-2 dark:text-gray-800"></h3>
           <ul className="pl-5 space-y-2 text-sm dark:text-gray-600">
-            {content
-              ? content.split("\n").map((line, index) => (
-                  <li key={index}>{line}</li>
-                ))
-              : <li>Write a post...</li>}
+            {content ? (
+              content
+                .split("\n")
+                .map((line, index) => <li key={index}>{line}</li>)
+            ) : (
+              <li>Writing your caption....</li>
+            )}
           </ul>
         </div>
 
