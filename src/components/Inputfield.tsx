@@ -21,7 +21,7 @@ const InputField: React.FC<InputFieldProps> = ({ topic, setTopic, onGenerate, lo
     <button
       onClick={onGenerate}
       disabled={loading || !topic}
-      className="px-3 py-1 sm:px-4 sm:py-2 text-white bg-blue-500 rounded hover:bg-blue-600 disabled:bg-blue-300"
+      className="px-3 py-1 sm:px-4 sm:py-2 text-white bg-blue-600 rounded hover:bg-blue-400 disabled:bg-blue-400"
     >
       {loading ? "Generating..." : "Generate"}
     </button>

@@ -10,15 +10,29 @@ interface ResponseData {
 }
 
 const dropdownOptions = [
-  { label: "Platform", items: ["LinkedIn", "GitHub" , "Twitter",  "Instagram"], item: "platform" },
+  {
+    label: "Platform",
+    items: ["LinkedIn", "GitHub", "Twitter", "Instagram"],
+    item: "platform",
+  },
   { label: "Words", items: ["Short", "Medium", "Long"], item: "words" },
-  { label: "Tone", items: ["Professional", "Motivational", "Funny", "Casual", "Normal"], item: "tone" },
-  { label: "Language", items: ["English", "Punjabi", "Hindi"], item: "language" },
+  {
+    label: "Tone",
+    items: ["Professional", "Motivational", "Funny", "Casual", "Normal"],
+    item: "tone",
+  },
+  {
+    label: "Language",
+    items: ["English", "Punjabi", "Hindi"],
+    item: "language",
+  },
 ];
 
 const ContentGenerator: React.FC = () => {
   const [topic, setTopic] = useState<string>("");
-  const [contentResponse, setContentResponse] = useState<ResponseData | null>(null);
+  const [contentResponse, setContentResponse] = useState<ResponseData | null>(
+    null
+  );
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [platform, setPlatform] = useState<string>("LinkedIn");
@@ -29,13 +43,13 @@ const ContentGenerator: React.FC = () => {
   const mapWords = (wordChoice: string): number => {
     switch (wordChoice.toLowerCase()) {
       case "short":
-        return 50;
+        return 100;
       case "medium":
-        return 100;
-      case "long":
         return 200;
+      case "long":
+        return 500;
       default:
-        return 100;
+        return 50;
     }
   };
 
@@ -48,10 +62,18 @@ const ContentGenerator: React.FC = () => {
 
     try {
       const wordsNumber = mapWords(words);
-      const response = await generateReply(platform, wordsNumber, contentType, language, topic);
+      const response = await generateReply(
+        platform,
+        wordsNumber,
+        contentType,
+        language,
+        topic
+      );
       setContentResponse(response);
     } catch (err: any) {
-      setError(err instanceof Error ? err.message : "An unexpected error occurred");
+      setError(
+        err instanceof Error ? err.message : "An unexpected error occurred"
+      );
     } finally {
       setLoading(false);
     }
@@ -59,13 +81,17 @@ const ContentGenerator: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 bg-gray-50">
-      {/* Heading */}
-      <h1 className="text-4xl font-bold text-blue-600 mb-8">Caption Generator</h1>
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-600 mb-8">
+        Caption Generator
+      </h1>
 
       {/* Dropdown Menus for platform, word count, tone, and language */}
-      <div className="flex space-x-4 mb-6">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-4 mb-6">
         {dropdownOptions.map(({ label, items, item }) => {
-          const stateMap: Record<string, [string, React.Dispatch<React.SetStateAction<string>>]> = {
+          const stateMap: Record<
+            string,
+            [string, React.Dispatch<React.SetStateAction<string>>]
+          > = {
             platform: [platform, setPlatform],
             words: [words, setWords],
             tone: [contentType, setContentType],
