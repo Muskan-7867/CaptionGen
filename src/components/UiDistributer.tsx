@@ -22,21 +22,23 @@ const UiDistributer: React.FC<UiProps> = ({
         return <LinkedInUI content={content} suggestions={suggestions} />;
       case "Twitter":
         return (
-          <TwitterUI
-            username="Jane Doe"
-            handle="janedoe"
-            content="This is a sample tweet with some amazing content!"
-            imageSrc="https://via.placeholder.com/500"
-          />
+          <TwitterUI 
+          content={content}
+          imageSrc="https://someimageurl.com" 
+          username="JohnDoe" 
+          handle="johnny_d" 
+        />
+        
         );
 
       case "Instagram":
         return (
           <InstagramUI
-            postImage="https://example.com/post.jpg"
-            content="This is an example post."
-            suggestions={["Suggestion 1", "Suggestion 2"]}
-          />
+          postImage="https://someimageurl.com"
+          content={content}
+          suggestions={["Use filters", "Add hashtags"]}
+        />
+        
         );
 
       case "GitHub":
