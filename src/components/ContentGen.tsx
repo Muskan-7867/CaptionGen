@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import generateReply from "../api/generateResp";
 import DropdownMenu from "./Dropdown";
 import InputField from "./Inputfield";
-
 import UiDistributer from "./UiDistributer";
 
 interface ResponseData {
@@ -26,7 +25,8 @@ const ContentGenerator: React.FC = () => {
   const [words, setWords] = useState<string>("Short");
   const [contentType, setContentType] = useState<string>("Professional");
   const [language, setLanguage] = useState<string>("English");
-  const[ btnClicked, setBtnClicked] = React.useState<boolean>(false)
+  const [btnClicked, setBtnClicked] = useState<boolean>(false);
+
   const mapWords = (wordChoice: string): number => {
     switch (wordChoice.toLowerCase()) {
       case "short":
@@ -44,26 +44,26 @@ const ContentGenerator: React.FC = () => {
     setLoading(true);
     setError(null);
     setContentResponse(null);
+    setBtnClicked(true);  
 
     try {
-      setBtnClicked(true)
       const wordsNumber = mapWords(words);
       const response = await generateReply(platform, wordsNumber, contentType, language, topic);
-      setBtnClicked(false)
       setContentResponse(response);
     } catch (err: any) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
     } finally {
-      setLoading(false)
-
+      setBtnClicked(false);  
+      setLoading(false);
     }
   };
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 bg-gray-50">
+      {/* Heading */}
       <h1 className="text-4xl font-bold text-blue-600 mb-8">Caption Generator</h1>
 
-      {/* Dropdown Menus */}
+      {/* Dropdown Menus for platform, word count, tone, and language */}
       <div className="flex space-x-4 mb-6">
         {dropdownOptions.map(({ label, items, item }) => {
           const stateMap: Record<string, [string, React.Dispatch<React.SetStateAction<string>>]> = {
@@ -87,24 +87,31 @@ const ContentGenerator: React.FC = () => {
         })}
       </div>
 
-      {/* Input for topic */}
+      {/* Input field for topic */}
       <InputField topic={topic} setTopic={setTopic} onGenerate={handleGenerateContent} loading={loading} />
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      {/* {contentResponse && (
-        <ContentDisplay content={contentResponse.content} suggestions={contentResponse.suggestions} />
-      )} */}
 
-      {/* Platform-Specific UI */}
-      {
-        !contentResponse  && !loading ?''
-         :
-      <div className="mt-8">
-        
-      {/* Pass generated content and suggestions to UiDistributer */}
-      <UiDistributer platform={platform} content={contentResponse?.content} suggestions={contentResponse?.suggestions} />
-    </div>
-      }
-      
+      {/* Error message */}
+      {error && <p className="text-red-500 mb-4">{error}</p>}
+
+      {/* Button to trigger content generation */}
+      <button
+        onClick={handleGenerateContent}
+        disabled={btnClicked || loading}  // Disable button when generating content or if already clicked
+        className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-300"
+      >
+        {loading ? "Generating..." : "Generate Content"}
+      </button>
+
+      {/* Display generated content */}
+      {contentResponse && !loading && (
+        <div className="mt-8">
+          <UiDistributer
+            platform={platform}
+            content={contentResponse?.content}
+            suggestions={contentResponse?.suggestions}
+          />
+        </div>
+      )}
     </div>
   );
 };
