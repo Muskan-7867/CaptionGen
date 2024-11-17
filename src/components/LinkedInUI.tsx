@@ -45,7 +45,7 @@ const LinkedInUI: React.FC<LinkedInUIProps> = ({ content }) => {
       {/* Post Image */}
       <div>
         <img
-          src="src/assets/linkedin.jpg"
+          src="src/images/linkedin.jpg"
           alt="Post Image"
           className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500"
         />

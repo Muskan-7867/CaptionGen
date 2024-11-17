@@ -30,7 +30,7 @@ const UiDistributer: React.FC<UiProps> = ({
           return (
             <TwitterUI
               content={content}
-              imageSrc="src/assets/twitter.webp"
+              imageSrc="src/images/twitter.webp"
               username="JohnDoe"
               handle="johnny_d"
             />
