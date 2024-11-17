@@ -23,7 +23,7 @@ async function generateReply(
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
     // Construct the prompt with backticks
-    const prompt = `Generate a caption for ${socialMedia} with a word limit of ${words} words. The caption should be in response to the occasion of "${userQuery}". The tone should be ${manner}, and the caption must be in ${lang}. If a URL is required, simply write "Insert URL here." Do not include any additional descriptions, comments, or context. Additionally, provide three alternative suggestions for the caption.`;
+    const prompt = `Generate a caption for ${socialMedia} with a word limit of ${words} words. The caption should be in response to the occasion of "${userQuery}". The tone should be ${manner}, and the caption must be in ${lang}. If a URL is required, simply write "Insert URL here." Do not include any additional descriptions, comments, or context. Additionally, provide three alternative suggestions for the caption.dont give multiple caption just give one best caption`;
 
     // Making the API request
     const response = await axios.post(url, {
