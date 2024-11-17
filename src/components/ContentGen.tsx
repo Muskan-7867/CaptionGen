@@ -96,7 +96,7 @@ const ContentGenerator: React.FC = () => {
       {/* Button to trigger content generation */}
       <button
         onClick={handleGenerateContent}
-        disabled={btnClicked || loading}  // Disable button when generating content or if already clicked
+        disabled={btnClicked || loading} 
         className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-300"
       >
         {loading ? "Generating..." : "Generate Content"}
