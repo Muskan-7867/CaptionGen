@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import generateReply from "../api/generateResp";
 import DropdownMenu from "./Dropdown";
 import InputField from "./Inputfield";
-import ContentDisplay from "./ContentDisplay";
+
 import UiDistributer from "./UiDistributer";
 
 interface ResponseData {
@@ -87,13 +87,14 @@ const ContentGenerator: React.FC = () => {
       {/* Input for topic */}
       <InputField topic={topic} setTopic={setTopic} onGenerate={handleGenerateContent} loading={loading} />
       {error && <p className="text-red-500 mb-4">{error}</p>}
-      {contentResponse && (
+      {/* {contentResponse && (
         <ContentDisplay content={contentResponse.content} suggestions={contentResponse.suggestions} />
-      )}
+      )} */}
 
       {/* Platform-Specific UI */}
       <div className="mt-8">
-        <UiDistributer platform={platform} />
+        {/* Pass generated content and suggestions to UiDistributer */}
+        <UiDistributer platform={platform} content={contentResponse?.content} suggestions={contentResponse?.suggestions} />
       </div>
     </div>
   );

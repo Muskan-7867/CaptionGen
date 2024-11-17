@@ -1,38 +1,33 @@
-import React, { useState, useEffect } from "react";
-import SkeletonLoader from "./Skelton";
-import LinkedInUI from "./LinkedInUI"; 
+import React from "react";
+
+import LinkedInUI from "./LinkedInUI";
 import TwitterUI from "./TwitterUI";
 import InstagramUI from "./InstagramUI";
 import GithubUI from "./GithubUI";
 
 interface UiProps {
   platform: string;
+  content: string | undefined;
+  suggestions: string[] | undefined;
 }
 
-const UiDistributer: React.FC<UiProps> = ({ platform }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, [platform]);
-
+const UiDistributer: React.FC<UiProps> = ({ platform, content, suggestions }) => {
   const renderUI = () => {
     switch (platform) {
       case "LinkedIn":
-        return <LinkedInUI />;
+        return <LinkedInUI content={content} suggestions={suggestions} />;
       case "Twitter":
-        return <TwitterUI />;
+        return <TwitterUI content={content} suggestions={suggestions} />;
       case "Instagram":
-        return <InstagramUI />;
+        return <InstagramUI content={content} suggestions={suggestions} />;
       case "GitHub":
-        return <GithubUI />;
+        return <GithubUI content={content} suggestions={suggestions} />;
       default:
         return <div>Select a platform to view its UI.</div>;
     }
   };
 
-  return <div>{loading ? <SkeletonLoader /> : renderUI()}</div>;
+  return <div >{renderUI()}</div>;
 };
 
 export default UiDistributer;
