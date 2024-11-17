@@ -1,5 +1,4 @@
 import React from "react";
-
 import LinkedInUI from "./LinkedInUI";
 import TwitterUI from "./TwitterUI";
 import InstagramUI from "./InstagramUI";
@@ -20,26 +19,22 @@ const UiDistributer: React.FC<UiProps> = ({
     switch (platform) {
       case "LinkedIn":
         return <LinkedInUI content={content} suggestions={suggestions} />;
-      case "Twitter":
-        return (
-          <TwitterUI 
-          content={content}
-          imageSrc="https://someimageurl.com" 
-          username="JohnDoe" 
-          handle="johnny_d" 
-        />
-        
-        );
-
-      case "Instagram":
+     case "Instagram":
         return (
           <InstagramUI
-          postImage="https://someimageurl.com"
-          content={content}
-          suggestions={["Use filters", "Add hashtags"]}
-        />
-        
+            content={content}
+            suggestions={["Use filters", "Add hashtags"]}
+          />
         );
+        case "Twitter":
+          return (
+            <TwitterUI
+              content={content}
+              imageSrc="src/assets/twitter.webp"
+              username="JohnDoe"
+              handle="johnny_d"
+            />
+          );
 
       case "GitHub":
         return <GithubUI content={content} suggestions={suggestions} />;

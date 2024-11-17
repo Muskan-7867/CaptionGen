@@ -10,7 +10,7 @@ interface ResponseData {
 }
 
 const dropdownOptions = [
-  { label: "Platform", items: ["LinkedIn", "Twitter", "GitHub", "Instagram"], item: "platform" },
+  { label: "Platform", items: ["LinkedIn", "GitHub" , "Twitter",  "Instagram"], item: "platform" },
   { label: "Words", items: ["Short", "Medium", "Long"], item: "words" },
   { label: "Tone", items: ["Professional", "Motivational", "Funny", "Casual", "Normal"], item: "tone" },
   { label: "Language", items: ["English", "Punjabi", "Hindi"], item: "language" },
@@ -25,7 +25,6 @@ const ContentGenerator: React.FC = () => {
   const [words, setWords] = useState<string>("Short");
   const [contentType, setContentType] = useState<string>("Professional");
   const [language, setLanguage] = useState<string>("English");
-  const [btnClicked, setBtnClicked] = useState<boolean>(false);
 
   const mapWords = (wordChoice: string): number => {
     switch (wordChoice.toLowerCase()) {
@@ -41,10 +40,11 @@ const ContentGenerator: React.FC = () => {
   };
 
   const handleGenerateContent = async () => {
+    if (loading) return; // Prevent multiple calls when loading
+
     setLoading(true);
     setError(null);
     setContentResponse(null);
-    setBtnClicked(true);  
 
     try {
       const wordsNumber = mapWords(words);
@@ -53,7 +53,6 @@ const ContentGenerator: React.FC = () => {
     } catch (err: any) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
     } finally {
-      setBtnClicked(false);  
       setLoading(false);
     }
   };
@@ -88,19 +87,15 @@ const ContentGenerator: React.FC = () => {
       </div>
 
       {/* Input field for topic */}
-      <InputField topic={topic} setTopic={setTopic} onGenerate={handleGenerateContent} loading={loading} />
+      <InputField
+        topic={topic}
+        setTopic={setTopic}
+        onGenerate={handleGenerateContent}
+        loading={loading}
+      />
 
       {/* Error message */}
       {error && <p className="text-red-500 mb-4">{error}</p>}
-
-      {/* Button to trigger content generation */}
-      <button
-        onClick={handleGenerateContent}
-        disabled={btnClicked || loading} 
-        className="bg-blue-600 text-white px-4 py-2 rounded disabled:bg-gray-300"
-      >
-        {loading ? "Generating..." : "Generate Content"}
-      </button>
 
       {/* Display generated content */}
       {contentResponse && !loading && (
