@@ -52,7 +52,7 @@ const ContentGenerator: React.FC = () => {
     } catch (err: any) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
 
