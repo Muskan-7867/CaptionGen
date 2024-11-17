@@ -42,7 +42,7 @@ const InstagramUI: React.FC<InstagramUIProps> = ({
 
       {/* Post Image */}
       <img
-        src="src/images/insta.jpg"
+        src="images/insta.jpg"
         alt="Post"
         className="object-cover object-center w-full h-72 dark:bg-gray-500"
       />

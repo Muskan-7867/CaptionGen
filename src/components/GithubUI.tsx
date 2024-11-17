@@ -32,7 +32,7 @@ const GithubUI: React.FC<GithubProps> = ({ content, suggestions }) => {
 
         {/* Image */}
         <img
-          src="src/images/github.webp"
+          src="images/github.webp"
           alt="Post"
           className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
         />
