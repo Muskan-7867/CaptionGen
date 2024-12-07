@@ -73,12 +73,7 @@ const LinkedInUI: React.FC<LinkedInUIProps> = ({ content }) => {
           >
             Copy
           </button>
-          <button
-            type="button"
-            className="px-4 py-1 text-sm font-medium text-white bg-gray-600 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
-          >
-            Share
-          </button>
+          
         </div>
       </div>
     </div>
