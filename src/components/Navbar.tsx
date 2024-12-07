@@ -3,8 +3,8 @@ import React from "react";
 const Navbar: React.FC = () => {
   return (
     <nav className="flex flex-wrap justify-between max-w-full items-center p-4 bg-blue-600 shadow-md">
-      {/* Logo */}
-      <div className="text-white text-xl sm:text-2xl font-bold">
+      {/* Logo with Animation */}
+      <div className="text-white text-xl sm:text-2xl font-bold animate-bounce">
         CaptionGen
       </div>
 
