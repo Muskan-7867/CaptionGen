@@ -81,9 +81,9 @@ const ContentGenerator: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 bg-gray-50">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-600 mb-8">
+      {/* <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-600 mb-8">
         Caption Generator
-      </h1>
+      </h1> */}
 
       {/* Dropdown Menus for platform, word count, tone, and language */}
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-4 mb-6">
