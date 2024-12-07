@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 
 interface DropdownMenuProps {
-  label: string;
+
   items: string[];
   value: string;
   onChange: (value: string) => void;
 }
 
-const DropdownMenu: React.FC<DropdownMenuProps> = ({ label, items, value, onChange }) => {
+const DropdownMenu: React.FC<DropdownMenuProps> = ({  items, value, onChange }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // Toggle dropdown visibility
@@ -23,7 +23,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ label, items, value, onChan
         onClick={toggleDropdown}
         className="flex items-center px-3 py-2 sm:px-4 sm:py-3 bg-gray-200 rounded hover:bg-gray-300 w-full sm:w-auto text-left"
       >
-        <span className="block sm:inline">{label}</span>:{" "}
+       
         {/* Only show value on medium screens and larger */}
         <span className="hidden sm:inline ml-2">{value}</span>
         <AiOutlineDown className="ml-2 text-gray-600" />

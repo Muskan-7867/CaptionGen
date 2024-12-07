@@ -11,18 +11,15 @@ interface ResponseData {
 
 const dropdownOptions = [
   {
-    label: "Platform",
     items: ["LinkedIn", "GitHub", "Twitter", "Instagram"],
     item: "platform",
   },
-  { label: "Words", items: ["Short", "Medium", "Long"], item: "words" },
+  { items: ["Short", "Medium", "Long"], item: "words" },
   {
-    label: "Tone",
     items: ["Professional", "Motivational", "Funny", "Casual", "Normal"],
     item: "tone",
   },
   {
-    label: "Language",
     items: ["English", "Punjabi", "Hindi"],
     item: "language",
   },
@@ -81,13 +78,9 @@ const ContentGenerator: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen p-8 bg-gray-50">
-      {/* <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-600 mb-8">
-        Caption Generator
-      </h1> */}
-
       {/* Dropdown Menus for platform, word count, tone, and language */}
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-4 mb-6">
-        {dropdownOptions.map(({ label, items, item }) => {
+        {dropdownOptions.map(({ items, item }) => {
           const stateMap: Record<
             string,
             [string, React.Dispatch<React.SetStateAction<string>>]
@@ -103,7 +96,6 @@ const ContentGenerator: React.FC = () => {
           return (
             <DropdownMenu
               key={item}
-              label={label}
               items={items}
               value={value}
               onChange={setValue}
